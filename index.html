@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Center for Neuro-Innovation & Performance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B1D3A;
+      --teal: #00BFA6;
+      --teal-light: #00d4b8;
+      --teal-dim: rgba(0,191,166,0.12);
+      --white: #ffffff;
+      --off-white: #f4f7fb;
+      --text-muted: #7a8fa8;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(11,29,58,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      max-width: 260px;
+      line-height: 1.2;
+    }
+
+    .nav-logo span { color: var(--teal); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 10px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,191,166,0.13) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 50% at 80% 80%, rgba(0,191,166,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,191,166,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,191,166,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--teal-dim);
+      border: 1px solid rgba(0,191,166,0.3);
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 16px;
+      font-weight: 400;
+    }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      color: rgba(122,143,168,0.8);
+      max-width: 580px;
+      margin: 0 auto 44px;
+      line-height: 1.7;
+    }
+
+    .hero-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-form input[type="email"] {
+      flex: 1;
+      min-width: 240px;
+      padding: 16px 20px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(0,191,166,0.25);
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .hero-form input[type="email"]::placeholder { color: var(--text-muted); }
+    .hero-form input[type="email"]:focus { border-color: var(--teal); }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 16px 28px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,191,166,0.35);
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* SECTION COMMONS */
+    section { padding: 100px 5%; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .centered { text-align: center; margin-left: auto; margin-right: auto; }
+
+    /* FEATURES */
+    .features-section { background: #081528; }
+
+    .features-header { text-align: center; margin-bottom: 60px; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 36px 32px;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(0,191,166,0.2);
+      transform: translateY(-4px);
+      background: rgba(0,191,166,0.04);
+    }
+
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* HOW IT WORKS */
+    .how-section {
+      background: var(--navy);
+    }
+
+    .how-header { text-align: center; margin-bottom: 64px; }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .steps-container::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(16.66% + 44px);
+      right: calc(16.66% + 44px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--teal), rgba(0,191,166,0.2));
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: var(--teal-dim);
+      border: 2px solid var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--teal);
+      position: relative;
+    }
+
+    .step-num::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,191,166,0.2);
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* SOCIAL PROOF */
+    .proof-section {
+      background: #081528;
+      padding: 100px 5%;
+    }
+
+    .proof-header { text-align: center; margin-bottom: 60px; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto 70px;
+    }
+
+    .testimonial {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--teal);
+      opacity: 0.2;
+      position: absolute;
+      top: 10px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), #0095a0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: block;
+    }
+
+    .author-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .logos-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .logos-label {
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .logo-pill {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: var(--navy);
+      padding: 100px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,191,166,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-section .section-title { margin-bottom: 14px; }
+
+    .cta-section .section-sub {
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      max-width: 460px;
+      margin: 0 auto 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 16px 20px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(0,191,166,0.25);
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .cta-form input[type="email"]::placeholder { color: var(--text-muted); }
+    .cta-form input[type="email"]:focus { border-color: var(--teal); }
+
+    .cta-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .guarantee-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .guarantee-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .guarantee-item span:first-child {
+      color: var(--teal);
+      font-size: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #040f1e;
+      padding: 48px 5% 32px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .nav-logo { font-size: 1rem; margin-bottom: 10px; display: block; }
+
+    .footer-tagline {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    .footer-links-col h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+
+    .footer-links-col ul { list-style: none; }
+
+    .footer-links-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links-col ul li a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links-col ul li a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: gap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-powered {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-powered a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-powered a:hover { color: var(--teal-light); }
+
+    /* DIVIDER */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+      border-radius: 2px;
+      margin: 0 auto 24px;
+    }
+
+    .divider-left {
+      margin: 0 0 24px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      nav { padding: 14px 5%; }
+      .nav-logo { font-size: 0.88rem; max-width: 200px; }
+      .nav-cta { padding: 8px 16px; font-size: 0.78rem; }
+      .hero { padding: 110px 5% 60px; }
+      .steps-container::before { display: none; }
+      .step { margin-bottom: 40px; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      section { padding: 70px 5%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 24px; }
+      .hero-form { flex-direction: column; align-items: stretch; }
+      .hero-form input[type="email"] { min-width: unset; }
+      .cta-form { flex-direction: column; align-items: stretch; }
+      .cta-form input[type="email"] { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Center for <span>Neuro-Innovation</span> & Performance</div>
+    <a href="#signup" class="nav-cta">Get Early Access</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🇫🇮 Finland's First Neuro-Performance Organization</div>
+      <h1>Train your brain to <em>perform under pressure</em> — not burn out from it.</h1>
+      <p class="hero-tagline">Neuroscience meets startup reality.</p>
+      <p class="hero-sub">We apply neuroscience, cognitive psychology, and Polyvagal Theory to help startup founders, teams, and high-performing individuals master stress regulation, sharpen decision-making, and build truly sustainable performance.</p>
+
+      <form class="hero-form" id="signup">
+        <input type="email" placeholder="Enter your work email…" required />
+        <button type="submit" class="btn-primary">Join the Waitlist</button>
+      </form>
+      <p class="hero-note">No spam. Early access to diagnostics &amp; pilot programs.</p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">4</span>
+          <span class="hero-stat-label">Week Programs</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">3</span>
+          <span class="hero-stat-label">Research Fields</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">6</span>
+          <span class="hero-stat-label">Core Modules</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">100%</span>
+          <span class="hero-stat-label">Evidence-Based</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="features-header">
+      <div class="section-tag">What We Offer</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Six evidence-based programs<br>built for founders & teams</h2>
+      <p class="section-sub centered">Each module is grounded in peer-reviewed neuroscience and designed to produce measurable results — for you and your business.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🧠</span>
+        <h3 class="feature-title">NeuroBalance Index Diagnostic</h3>
+        <p class="feature-desc">Individual and team assessments mapping stress zones, cognitive patterns, and behavioral triggers to create a personalized neuro-regulation baseline.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3 class="feature-title">NeuroSprint 4-Week Training</h3>
+        <p class="feature-desc">Structured neuroplasticity programs combining state regulation, cognitive flexibility training, and reflection systems tied to measurable business KPIs.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🫁</span>
+        <h3 class="feature-title">Real-Time Regulation Toolkit</h3>
+        <p class="feature-desc">Practical in-the-moment tools including breathing protocols, somatic grounding techniques, and daily micro-practices to reduce acute stress intensity.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🤝</span>
+        <h3 class="feature-title">We-silience Team Programs</h3>
+        <p class="feature-desc">Co-founder dyad and team resilience programs measuring and improving interpersonal neuro-regulation and collective stress management.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3 class="feature-title">Reflection & Progress Tracking</h3>
+        <p class="feature-desc">Daily state check-ins, weekly reviews, and longitudinal tracking systems connecting personal regulation progress to business performance outcomes.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🚀</span>
+        <h3 class="feature-title">Founder Investment Readiness</h3>
+        <p class="feature-desc">Specialized modules for pitch clarity, decision-making under investor pressure, and breaking the hustle-burnout cycle common in early-stage startups.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="how-header">
+      <div class="section-tag">How It Works</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Your path to regulated,<br>high-performance leadership</h2>
+      <p class="section-sub centered">Three structured phases — from baseline to breakthrough — each building on measurable neuro-performance data.</p>
+    </div>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3 class="step-title">Diagnose Your Baseline</h3>
+        <p class="step-desc">Complete the NeuroBalance Index — a comprehensive assessment mapping your unique stress zones, cognitive patterns, and regulation gaps. Know exactly where you stand before you train.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3 class="step-title">Train with NeuroSprint</h3>
+        <p class="step-desc">Enter your personalized 4-week neuroplasticity program. Daily practices, real-time regulation tools, and structured reflection sessions reshape your nervous system's response to pressure.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3 class="step-title">Track & Sustain Results</h3>
+        <p class="step-desc">Measure your progress through longitudinal tracking that connects neuro-regulation improvements directly to business performance — clarity, decisions, team dynamics, and investor readiness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="proof-section">
+    <div class="proof-header">
+      <div class="section-tag">Early Results</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Founders are already<br>feeling the difference</h2>
+      <p class="section-sub centered">Pilot participants from Nordic tech startups share their experience with evidence-based neuro-performance training.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p class="testimonial-text">I walked into investor meetings feeling like my nervous system was hijacked. After just four weeks with the NeuroSprint program, I could finally think clearly under pressure. Closed our seed round feeling grounded for the first time.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MK</div>
+          <div>
+            <span class="author-name">Mikael K.</span>
+            <span class="author-role">Founder & CEO, Helsinki SaaS Startup</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">My co-founder and I were burning out and taking it out on each other. The We-silience program gave us a shared language for our nervous system states. It literally saved our working relationship — and probably the company.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AL</div>
+          <div>
+            <span class="author-name">Aino L.</span>
+            <span class="author-role">Co-Founder, Nordic HealthTech Venture</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">I was skeptical — neuroscience for startup performance sounded abstract. But the NeuroBalance diagnostic showed me exactly where my regulation was breaking down, and the toolkit gave me practical tools I use every single day. Remarkable ROI.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">TH</div>
+          <div>
+            <span class="author-name">Tomas H.</span>
+            <span class="author-role">VP Engineering, Nordic Scale-up</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logos-label">Trusted by founders & teams from</div>
+    <div class="logos-row">
+      <div class="logo-pill">Nordic Tech</div>
+      <div class="logo-pill">Helsinki Startups</div>
+      <div class="logo-pill">Slush Community</div>
+      <div class="logo-pill">Accelerator Alumni</div>
+      <div class="logo-pill">VC-Backed Teams</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="section-tag">Get Early Access</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Ready to perform under pressure<br>without paying with your health?</h2>
+      <p class="section-sub centered">Join the waitlist for our pilot cohort. Early access founders receive priority onboarding, a complimentary NeuroBalance diagnostic, and founding-member pricing.</p>
+
+      <form class="cta-form">
+        <input type="email" placeholder="Your work email address…" required />
+        <button type="submit" class="btn-primary">Reserve My Spot</button>
+      </form>
+      <p class="cta-note">Limited cohort spots. No commitment required to join the waitlist.</p>
+
+      <div class="guarantee-row">
+        <div class="guarantee-item">
+          <span>✓</span>
+          <span>Evidence-based methodology</span>
+        </div>
+        <div class="guarantee-item">
+          <span>✓</span>
+          <span>Measurable KPI outcomes</span>
+        </div>
+        <div class="guarantee-item">
+          <span>✓</span>
+          <span>Zero fluff, all science</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Center for <span>Neuro-Innovation</span> & Performance</span>
+          <p class="footer-tagline">Finland's first organization applying neuroscience, cognitive psychology, and Polyvagal Theory to high-performance leadership.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#">NeuroBalance Diagnostic</a></li>
+            <li><a href="#">NeuroSprint 4-Week</a></li>
+            <li><a href="#">We-silience Teams</a></li>
+            <li><a href="#">Investment Readiness</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Research</a></li>
+            <li><a href="#">For Teams</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">Podcast</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© <span class="year"></span> Center for Neuro-Innovation & Performance. All rights reserved. Helsinki, Finland.</p>
+        <p class="footer-powered">Powered by <a href="https://madmantra.com" target="_blank" rel="noopener">MadMantra</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  document.querySelectorAll('form').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = form.querySelector('input[type="email"]').value;
+      fetch('https://api.madmantra.app/api/landing/center-for-neuro-innovation-performance/signup', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email: email})
+      }).then(function() {
+        form.innerHTML = '<p style="padding:12px;color:green;font-weight:600">Thanks! We will be in touch.</p>';
+      });
+    });
+  });
+  </script>
+  <script>document.querySelectorAll('.year').forEach(e=>e.textContent=new Date().getFullYear())</script>
+
+</body>
+</html>
